@@ -53,7 +53,7 @@ function(){
 
 // <!-- typed js effect starts -->
     var typed = new Typed(".typing-text", {
-        strings: ["Mobile Developer", "Backend Developer"],
+        strings: ["Flutter mobile apps", "cross-platform web apps", "reusable developer tools"],
         loop: true,
         typeSpeed: 50,
 		backSpeed: 25,
@@ -141,9 +141,8 @@ function showSkills(skills) {
     skillsContainer.innerHTML = skillHTML;
 }
 
-fetchData().then(data => {
-    showSkills(data);
-});
+// Skills are rendered in index.html so they remain available before JavaScript and
+// network requests finish. Keep skills.json for future programmatic updates.
 
 /* SCROLL HOME */
 srtop.reveal('.home .content h3',{delay: 200}); 
