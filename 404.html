@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ali Ben Jahlan — Senior Mobile & Backend Developer specializing in Flutter, Clean Architecture, and high-performance cross-platform apps.">
   <meta name="keywords" content="Ali Ben Jahlan, Flutter Developer, Senior Mobile Developer, Dart, Backend Developer, Portfolio">
   <meta property="og:title" content="Ali Ben Jahlan — Senior Mobile & Backend Developer">
   <meta property="og:description" content="Senior Flutter Developer building reliable, production-ready mobile apps and backend APIs.">
-  <meta property="og:image" content="assets/assets/images/potrait.jpg">
+  <meta property="og:image" content="icons/Icon-512.png">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -35,16 +23,128 @@
 
   <title>Ali Ben Jahlan — Senior Mobile & Backend Developer</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      background-color: #090D16;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    #loading-splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0F172A 0%, #090D16 100%);
+      z-index: 999999;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      user-select: none;
+    }
+    .splash-logo-container {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .splash-glow-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 32px;
+      background: radial-gradient(circle, rgba(0,210,255,0.35) 0%, rgba(99,102,241,0.18) 50%, transparent 70%);
+      animation: pulseGlow 2.4s infinite ease-in-out;
+    }
+    .splash-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 210, 255, 0.28), 0 4px 12px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 2;
+      border: 1.5px solid rgba(0, 210, 255, 0.35);
+    }
+    .splash-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #F8FAFC;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .splash-subtitle {
+      font-size: 12px;
+      font-weight: 600;
+      color: #00D2FF;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .splash-bar-container {
+      width: 140px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .splash-bar-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 45%;
+      background: linear-gradient(90deg, #00D2FF, #6366F1);
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+      animation: progressSlide 1.4s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.14); opacity: 1; }
+    }
+    @keyframes progressSlide {
+      0% { left: -45%; width: 35%; }
+      50% { width: 65%; }
+      100% { left: 100%; width: 35%; }
+    }
+    .fade-out {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <div id="loading-splash">
+    <div class="splash-logo-container">
+      <div class="splash-glow-ring"></div>
+      <img class="splash-logo" src="icons/Icon-192.png" alt="Ali Ben Jahlan" />
+    </div>
+    <div class="splash-title">Ali Ben Jahlan</div>
+    <div class="splash-subtitle">Senior Mobile & Backend Developer</div>
+    <div class="splash-bar-container">
+      <div class="splash-bar-progress"></div>
+    </div>
+  </div>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <script>
+    function removeSplash() {
+      const splash = document.getElementById('loading-splash');
+      if (splash && !splash.classList.contains('fade-out')) {
+        splash.classList.add('fade-out');
+        setTimeout(() => splash.remove(), 500);
+      }
+    }
+    window.addEventListener('flutter-first-frame', removeSplash);
+    setTimeout(removeSplash, 4000);
+    document.addEventListener('click', removeSplash, { once: true });
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 
   <!-- Start of Tawk.to Script -->
